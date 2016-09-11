@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>联想菜单demo</title>
+  <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .keyword-wrap{
+      width: 400px;
+      margin: 100px auto;
+      position: relative;
+    }
+    .input-wrap{
+      width: 398px;
+      height: 38px;
+      border: 1px solid #eee;
+    }
+    .keyword-input{
+      width: 388px;
+      height: 38px;
+      line-height: 38px;
+      padding-left: 10px;
+    }
+    /*插件样式*/
+    .select-position-wrap{
+      position: absolute;
+      font-size: 14px;
+    }
+    .select-wrap{
+      border: 1px solid #eee;
+    }
+    .select-wrap li{
+      padding-left: 10px;
+      border-bottom: 1px solid #eee;
+      list-style: none;
+      cursor: pointer;
+    }
+    .select-wrap li:last-child{
+      border-bottom: 0;
+    }
+    .select-wrap li.active,.select-wrap li:hover{
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="keyword-wrap J-keyword">
+    <div class="input-wrap">
+      <input type="text" class="keyword-input J-input">
+    </div>
+  </div>
+
+  <script src="autoMenu.js"></script>
+  <script>
+    var jsons = [{keyword:'测试数据1'},{keyword:'测试数据2'},{keyword:'测试数据3'},{keyword:'测试数据4'},{keyword:'测试数据5'}];
+    var _input = document.querySelector('.J-input');
+    if(window.attachEvent){
+      _input.attachEvent('onpropertychange',function(){
+        autoMenu.init(".J-keyword",{
+          data: jsons,
+          name: "keyword"
+        })
+      })
+    }else{
+      _input.addEventListener('input',function(){
+        autoMenu.init(".J-keyword",{
+          data: jsons,
+          name: "keyword"
+        })
+      })
+    }
+  </script>
+</body>
+</html>
