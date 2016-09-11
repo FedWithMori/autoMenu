@@ -1,5 +1,5 @@
 /*
- *  联想菜单插件  v0.1
+ *  联想菜单插件  v0.1.1
  *  author mori
  *  兼容程度： ie8
  *  数据类型要求为json
@@ -98,7 +98,7 @@
         for(var i=0; i<_li.length; i++){
           if(_li[i].className === "active"){
             var _txt = getText(_li[i]);
-            _input.value = _txt;
+            defaults._input.value = _txt;
             break;
           }
         }
@@ -145,7 +145,7 @@
   function listen(){
     defaults._input = defaults.obj.querySelector("input");
     addEvent(defaults._input,"blur",function(){
-      setTimeout(hide,80);
+      setTimeout(hide,100);
     });
     addEvent(defaults._input,"keyup",keyboardEv);
   }
@@ -156,10 +156,12 @@
             defaults.obj = document.querySelector(className);
             defaults.data = option.data;
             defaults.name = option.name;
-            if(!defaults.status){
-              listen();
+            if(defaults.data.length){
+              if(!defaults.status){
+                listen();
+              }
+              creatSelectHtml();
             }
-            creatSelectHtml();
     }
   }
   // 暴露在外的api
